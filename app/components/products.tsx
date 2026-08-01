@@ -35,12 +35,14 @@ async function getFilteredData(start : number, itemsPerPage : number){
 
 export function ProductsCards({data} : {data : Products}){
     return (
-        <div className="flex flex-col items-center justify-center bg-white gap-2 pb-4 drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1">
+        <div className="flex flex-col items-center justify-center bg-white drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1">
             <div className="w-full aspect-square relative rounded-t-md overflow-clip">
                 <Image src={urlFor(data.cover).url()} alt={data.title} fill sizes="1" loading="eager" className="object-cover"/>
             </div>
-            <h1 className="font-bold text-md lg:text-lg text-center">{data.title}</h1>
-            <Link href={`/products/${data.slug.current}`} className="border border-red-700 text-red-700 rounded-full px-6 py-1 hover:bg-red-700 hover:text-white transition-colors font-medium text-xs lg:text-sm">lihat selengkapnya</Link>
+            <div className="flex flex-col gap-2 px-2 py-4 items-center justify-center">
+                <h1 className="font-bold text-xs lg:text-lg text-center">{data.title}</h1>
+            <Link href={`/products/${data.slug.current}`} className="border border-red-700 text-red-700 rounded-full w-fit px-4 py-0.5 lg:px-6 lg:py-1 hover:bg-red-700 hover:text-white transition-colors font-medium text-[0.5rem] lg:text-sm">lihat selengkapnya</Link>
+            </div>
         </div>
     )
 }

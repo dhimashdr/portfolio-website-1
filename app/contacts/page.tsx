@@ -18,10 +18,9 @@ const contacts = [
 export default function ContactsPage(){
     return <div>
         <Section title="Kontak" subtitle="Informasi kontak kami yang dapat Anda hubungi"/>
-        <div className="flex p-8  md:p-16">
+        <div className="flex flex-col gap-8 lg:gap-2 lg:flex-row p-8 md:p-16">
         <div className="flex-1/2 gap-4 flex flex-col">
         <p className="text-balance text-sm md:text-lg font-bold">Konsultasikan dengan kami terkait kerajinan tembaga dan kuningan yang Anda inginkan melalui kontak berikut : </p>
-        <br />
         {contacts.map((e, i) => {
             return <div key={i} className="flex items-center-safe gap-2">
                 {e.icon}<Link href={e.href} className="text-sm">{e.value}</Link>

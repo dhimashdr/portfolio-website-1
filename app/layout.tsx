@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, DM_Sans, DM_Mono } from "next/font/google";
+import { Geist, Geist_Mono, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
@@ -24,6 +24,11 @@ const dmMono = DM_Mono({
   variable: "--font-dm-mono",
   subsets: ['latin'],
   weight: '400'
+})
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta-sans",
+  subsets: ['latin']
 })
 
 export const metadata: Metadata = {
@@ -84,7 +89,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${dmMono.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative">
         <NavBar/>

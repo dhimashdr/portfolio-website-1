@@ -35,10 +35,10 @@ export default function Advantages(){
         advantages.map((e, i) => {
             return <motion.div variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className='relative overflow-hidden w-full aspect-8/1 shadow-md shadow-black/20 rounded-lg text-left' key={i}>
                 <div className={`absolute w-full h-full bg-cover bg-center`} style={{backgroundImage: `url(${e.img})`}}></div>
-                <div className={`z-50 p-8 relative from-white to-transparent from-40% w-full h-full flex items-center ${i % 2 == 0 ? "bg-linear-90" : "bg-linear-270 flex-row-reverse text-right"}`}>
+                <div className={`z-50 p-2 lg:p-8 relative from-white to-transparent from-40% w-full h-full flex items-center ${i % 2 == 0 ? "bg-linear-90" : "bg-linear-270 flex-row-reverse text-right"}`}>
                     <div className='flex flex-col'>
-                        <h1 className='font-bold text-red-700 text-sm lg:text-2xl'>{e.headline}</h1>
-                        <p className='font-light text-[0.5rem] lg:text-sm'>{e.desc}</p>
+                        <h1 className='font-bold text-red-700 text-[0.6rem] lg:text-2xl'>{e.headline}</h1>
+                        <p className='font-light text-[0.4rem] lg:text-sm'>{e.desc}</p>
                     </div>
                 </div>
             </motion.div>

@@ -6,6 +6,14 @@
   --primary: #171717;
   --secondary: #23ab23;
   --tertiary: #dedede;
+  --bg-1: #FDFBF7;
+  --fg-1: #2C221E;
+  --primary-1: #C86D51;
+  --secondary-1: #8A9A86;
+  --bg-2: #FAFAFA;
+  --fg-2: #1E2022;
+  --primary-2: #B8860B;
+  --secondary-2: #EAE5D9;
 }
 
 @theme inline {
@@ -18,6 +26,15 @@
   --font-mono: var(--font-geist-mono);
   --font-sans-1: var(--font-dm-sans);
   --font-mono-1: var(--font-dm-mono);
+  --font-sans-2: var(--font-jakarta-sans);
+  --color-bg-1: var(--bg-1);
+  --color-fg-1: var(--fg-1);
+  --color-primary-1: var(--primary-1);
+  --color-secondary-1: var(--secondary-1);
+  --color-bg-2: var(--bg-2);
+  --color-fg-2: var(--fg-2);
+  --color-primary-2: var(--primary-2);
+  --color-secondary-2: var(--secondary-2);
 }
 /* 
 @media (prefers-color-scheme: dark) {

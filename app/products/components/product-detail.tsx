@@ -27,7 +27,7 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
         </div>
         <div className="flex gap-2">
             {images.map((e, i) => {
-                return <div onClick={() => setIndex(i)} className="relative w-16 aspect-square cursor-pointer p-2" key={i}>
+                return <div onClick={() => setIndex(i)} className="relative w-12 lg:w-16 aspect-square cursor-pointer p-2" key={i}>
                     {index == i && <div className="w-full h-full absolute bg-white/50 z-10 left-0 top-0  border-4 border-red-400"></div>}
                     <Image src={urlFor(e).url()} alt={`${data.title}-${i}`} fill sizes="1" className="object-cover" loading="eager"></Image>
                 </div>

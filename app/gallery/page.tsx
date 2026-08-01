@@ -19,6 +19,6 @@ export default async function GalleryPage(){
 
     return <div className="w-full h-full">
         <Section title="Galeri Kerajinan" subtitle="lihat berbagai dokumentasi dari kerajinan yang telah dibuat"/>
-        <Gallery photos={photos}/>
+        <div className="p-8 lg:p-16"><Gallery photos={photos}/></div>
     </div>
 }

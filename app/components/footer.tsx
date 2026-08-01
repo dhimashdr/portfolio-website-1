@@ -38,7 +38,7 @@ const contacts = [
 
 export default function Footer(){
     return <div className="bg-primary text-white">
-    <div className="w-full flex px-6 lg:px-16 py-8 font-sans-1">
+    <div className="w-full flex flex-col gap-8 md:gap-2 md:flex-row px-6 lg:px-16 py-8 font-sans-1">
         <div className="flex flex-col flex-1/2 gap-6 lg:gap-8">
             <h1 className="text-md lg:text-2xl font-bold">Tentang Kami</h1>
             <div className="flex items-center gap-2">
@@ -77,11 +77,11 @@ export default function Footer(){
         </div>
     </div>
     <br />
-    <hr className="mx-16 text-gray-700"/>
+    <hr className="mx-6 lg:mx-16 text-gray-700"/>
     <br />
     <div className="flex px-16 items-center justify-center text-xs md:text-sm text-gray-500 ">
         <h1></h1>
-        <h1 className="ml-auto">diverse.id 2026©</h1>
+        <h1 className="mx-auto">© 2026, diverse.id</h1>
     </div>
     <br />
     </div>

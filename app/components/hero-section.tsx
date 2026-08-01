@@ -18,7 +18,7 @@ export default function AutoSlideshow() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden w-full aspect-16/7 font-sans-1 text-white">
+    <div className="relative overflow-hidden w-full aspect-4/3 md:aspect-16/7 font-sans-1 text-white">
       <AnimatePresence mode="sync">
         <motion.div 
             key={index}
@@ -29,9 +29,9 @@ export default function AutoSlideshow() {
             className={`absolute w-full h-full bg-cover bg-center`} style={{backgroundImage: `url(${images[index]})`}}>
         </motion.div>
       </AnimatePresence>
-      <div className='relative w-full h-full bg-black/64 flex flex-col justify-center-safe p-8 lg:p-16 gap-4'>
-        <h1 className='font-bold text-2xl lg:text-4xl text-shadow-md text-shadow-black/50'>Kerajinan Tembaga Kuningan</h1>
-        <p className='font-light text-xs lg:text-sm text-shadow-xs text-shadow-black/50 text-pretty lg:w-1/2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias nobis atque quisquam dolore sequi inventore velit perspiciatis corrupti quo explicabo! Illum unde libero ipsum, veritatis molestias assumenda quidem accusantium veniam nihil qui dicta magni numquam quia. Mollitia quam maiores nihil animi magnam asperiores veniam deleniti?</p>
+      <div className='relative w-full h-full bg-black/64 flex flex-col justify-center-safe p-8 lg:p-16 gap-2 lg:gap-4 text-center lg:text-left'>
+        <h1 className='font-bold text-xl lg:text-4xl text-shadow-md text-shadow-black/50'>Kerajinan Tembaga Kuningan</h1>
+        <p className='font-light text-[0.5rem] lg:text-sm text-shadow-xs text-shadow-black/50 text-balance lg:w-1/2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias nobis atque quisquam dolore sequi inventore velit perspiciatis corrupti quo explicabo!</p>
       </div>
     </div>
   );

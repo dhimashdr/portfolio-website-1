@@ -19,7 +19,7 @@ export default async function DetailProduct({ params }: {params : Promise<{ slug
     const { slug } = await params
     const data = await getProductDetail(slug)
 
-    return <div className="p-16">
+    return <div className="p-8 lg:p-16">
     <ProductDetailInfo data={data}></ProductDetailInfo>
     </div>
 }
