@@ -18,7 +18,7 @@ export default async function GalleryPage(){
     const photos = arrayPhotos.flatMap(item => item.productImages);
 
     return <div className="w-full h-full">
-        <Section title="Galeri" subtitle="lihat berbagai dokumentasi dari kerajinan yang telah dibuat"/>
+        <Section title="Galeri Kerajinan" subtitle="lihat berbagai dokumentasi dari kerajinan yang telah dibuat"/>
         <Gallery photos={photos}/>
     </div>
 }
