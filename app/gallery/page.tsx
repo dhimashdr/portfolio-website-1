@@ -7,7 +7,18 @@ interface Photos{
 }
 
 async function getPhotos(){
-    const query = `*[_type == "products"] | order(_createdAt desc)[0...20]{productImages}`
+    // const query = `*[_type == "products"] | order(_createdAt desc)[0...20]{productImages}`
+    // const query = `*[_type == "products"]{productImages[isInGallery], lqip}`
+    const query = `*[_type == "products"]{"productImages": productImages[isInGallery].asset->{
+                        url,
+                        metadata {
+                        dimensions {
+                            width,
+                            height
+                        },
+                        lqip // Bonus: untuk efek blur saat loading
+                        }
+                    }}`
     const data = await client.fetch(query, {}, {next: {revalidate: 60}})
 
     return data as Array<Photos>

@@ -89,13 +89,15 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${dmMono.variable} ${plusJakartaSans.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${dmMono.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col relative">
-        <NavBar/>
-        {children}
-        <OverlayWhatsapp/>
-        <Footer/>
+      <body className="">
+        <div className="min-h-full flex flex-col relative bg-bg-1">
+            <NavBar/>
+            {children}
+            <OverlayWhatsapp/>
+            <Footer/>
+        </div>
       </body>
     </html>
   );

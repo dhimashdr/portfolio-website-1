@@ -8,7 +8,9 @@ const variants = {
 }
 
 export default function Stats(){
-    return <div className="hidden lg:grid grid-cols-3">
+    return <>
+    <br />
+    <div className="hidden lg:grid grid-cols-3">
         <div className="flex flex-col justify-center border-r border-gray-500">
             <motion.h1 variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className="font-bold text-red-700 text-xl lg:text-4xl">100+</motion.h1>
             <motion.p variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className="font-light text-[0.5rem] lg:text-sm">pengiriman ke berbagai daerah di Indonesia</motion.p>
@@ -22,4 +24,6 @@ export default function Stats(){
             <motion.p variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className="font-light text-[0.5rem] lg:text-sm">produk sesuai dan aman sampai ke tangan penerima</motion.p>
         </div>
     </div>
+    <br />
+    </>
 }

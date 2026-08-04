@@ -9,23 +9,23 @@ import { motion, AnimatePresence } from "framer-motion";
 const Links = [
     {
         href: "/",
-        label: "Home"
+        label: "HOME"
     },
     {
         href: "/products",
-        label: "Produk"
+        label: "PRODUK"
     },
     {
         href: "/gallery",
-        label: "Galeri"
+        label: "GALERI"
     },
     {
         href: "/how-to-order",
-        label: "Cara Pesan"
+        label: "CARA PESAN"
     },
     {
         href: "/contacts",
-        label: "Kontak"
+        label: "KONTAK"
     },
 ]
 
@@ -65,7 +65,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="sticky top-0 z-60 bg-white/80 backdrop-blur-md drop-shadow-lg shadow-black font-sans-1">
+    <nav className="sticky top-0 z-60 bg-white/80 backdrop-blur-md drop-shadow-lg shadow-black font-sans-1 text-sm font-bold">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="shrink-0 flex items-center">
@@ -77,7 +77,7 @@ export default function NavBar() {
           <div className="hidden md:flex space-x-8">
             {Links.map((e, i) => {
                 return (
-                    <Link href={e.href} key={i} className={`font-semibold text-primary hover:text-red-700 hover:bg-red-700/10 transition-colors duration-300 rounded-md px-2 ${pathname.includes(e.href) && (e.href !== "/" || pathname === "/") ? "text-red-700 bg-red-700/10" : ""}`}>{e.label}</Link>
+                    <Link href={e.href} key={i} className={`text-primary hover:text-red-700 hover:bg-red-700/10 transition-colors duration-300 rounded-md px-2 ${pathname.includes(e.href) && (e.href !== "/" || pathname === "/") ? "text-red-700 bg-red-700/10" : ""}`}>{e.label}</Link>
                 )
             })}
           </div>
@@ -116,7 +116,7 @@ export default function NavBar() {
                 <motion.div key={link.href} variants={linkVariants}>
                   <Link
                     href={link.href}
-                    className={`block px-3 py-2 rounded-md text-sm font-semibold text-black hover:text-red-700 hover:bg-red-700/10 ${pathname.includes(link.href) && (link.href !== "/" || pathname === "/") ? "text-red-700 bg-red-700/10" : ""}`}
+                    className={`block px-3 py-2 rounded-md text-xs font-semibold text-black hover:text-red-700 hover:bg-red-700/10 ${pathname.includes(link.href) && (link.href !== "/" || pathname === "/") ? "text-red-700 bg-red-700/10" : ""}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}

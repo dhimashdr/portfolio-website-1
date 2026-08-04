@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const advantages = [
     {
@@ -33,7 +33,7 @@ const variants = {
 export default function Advantages(){
     return (
         advantages.map((e, i) => {
-            return <motion.div variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className='relative overflow-hidden w-full aspect-8/1 shadow-md shadow-black/20 rounded-lg text-left' key={i}>
+            return <motion.div variants={variants} initial="initial" whileInView="animate" transition={{duration: 0.5, ease: "easeOut"}} viewport={{once: true}} className='relative overflow-hidden w-full aspect-5/1 lg:aspect-8/1 border border-black text-left' key={i}>
                 <div className={`absolute w-full h-full bg-cover bg-center`} style={{backgroundImage: `url(${e.img})`}}></div>
                 <div className={`z-50 p-2 lg:p-8 relative from-white to-transparent from-40% w-full h-full flex items-center ${i % 2 == 0 ? "bg-linear-90" : "bg-linear-270 flex-row-reverse text-right"}`}>
                     <div className='flex flex-col'>

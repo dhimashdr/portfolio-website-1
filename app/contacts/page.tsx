@@ -16,7 +16,7 @@ const contacts = [
 ]
 
 export default function ContactsPage(){
-    return <div>
+    return <div className="font-sans-2">
         <Section title="Kontak" subtitle="Informasi kontak kami yang dapat Anda hubungi"/>
         <div className="flex flex-col gap-8 lg:gap-2 lg:flex-row p-8 md:p-16">
         <div className="flex-1/2 gap-4 flex flex-col">
@@ -30,7 +30,7 @@ export default function ContactsPage(){
         <div className="flex-1/2 flex flex-col gap-4">
         <h1 className="font-bold text-sm lg:text-lg">Alamat kami :</h1>
             <div className="w-full md:w-2/3 aspect-video relative">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d423.8934607197258!2d110.5175325784458!3d-7.501766747573655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1785480548724!5m2!1sid!2sid" className="w-full h-full" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1595.1973649939491!2d110.51762427045765!3d-7.502178882467227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a6506e65c78b3%3A0x4a6a446291741889!2sWallCovering(%20kerajinan%20Tembaga%20%26%20Kuningan)!5e0!3m2!1sid!2sid!4v1785826903352!5m2!1sid!2sid" className="w-full h-full" loading="lazy"></iframe>
             </div>
             <p className="text-xs lg:text-sm text-balance">Dukuh Banaran RT 03 / RW 08, Desa Cepogo, Kecamatan Cepogo, Kabupaten Boyolali, Provinsi Jawa Tengah, 57362</p>
         </div>
