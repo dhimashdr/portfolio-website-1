@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dhimashdr.vercel.app"),
-  title: 'Yourweb.com | Cara Pesan',
+  title: 'Cara Pesan',
   description: "Jelajahi katalog produk kerajinan tembaga dan kuningan",
   openGraph: {
     images: ['/og-image.jpg'],

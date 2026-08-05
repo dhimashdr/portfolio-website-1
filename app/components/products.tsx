@@ -33,8 +33,8 @@ async function getSixData(){
   return data as Array<Products2>
 }
 
-async function getFilteredData(start : number, itemsPerPage : number){
-  const query = `*[_type == "products"] | order(_createdAt desc)[${start}...${start + itemsPerPage}]{cover, title, slug, shortDescription, tags}`
+async function getFilteredData(start : number, itemsPerPage : number, filter : string){
+  const query = `*[_type == "products" && ${filter}] | order(_createdAt desc)[${start}...${start + itemsPerPage}]{cover, title, slug, shortDescription, tags}`
   const data = await client.fetch(query, {}, {next: {revalidate: 60}})
 
   return data as Array<Products2>
@@ -66,8 +66,8 @@ export async function AllProducts(){
     )
 }
 
-export async function FilteredProducts({start, itemsPerPage} : {start : number, itemsPerPage : number}){
-    const data = await getFilteredData(start, itemsPerPage)
+export async function FilteredProducts({start, itemsPerPage, filter} : {start : number, itemsPerPage : number, filter: string}){
+    const data = await getFilteredData(start, itemsPerPage, filter)
 
     return (
         data.map((e, i) => {

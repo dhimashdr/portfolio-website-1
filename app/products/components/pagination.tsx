@@ -16,9 +16,9 @@ export default function ProductPagination({currentPage, totalPages} : ProductPag
   const handlePage = (page : number) => {
       const params = new URLSearchParams(pageParams)
       if (page > 1 && page <= totalPages) {
-          params.set('p', page.toString())
+          params.set('page', page.toString())
       } else {
-          params.delete('p')
+          params.delete('page')
       }
       router.replace(`${pathName}?${params.toString()}`)
   }

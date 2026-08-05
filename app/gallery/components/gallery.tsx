@@ -25,7 +25,7 @@ export default function Gallery({photos} : {photos : Array<Photos>}){
     };
 
     return <div className="w-full relative">
-    <div className="columns-3 md:columns-4 md:space-y-4 md:gap-4 space-y-2 gap-2">
+    <div className="columns-2 md:columns-4 md:space-y-4 md:gap-4 space-y-2 gap-2">
             {photos.map((image, i) => {
                 return <div key={i} onClick={() => setIndex(i)} className="w-full group overflow-hidden">
                     <Image src={image.url} alt={`galeri-${i}`} className="w-full h-auto object-cover group-hover:scale-110 transition-all" width={image.metadata.dimensions.width} height={image.metadata.dimensions.height} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder="blur" blurDataURL={image.metadata.lqip}></Image>
