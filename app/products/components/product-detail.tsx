@@ -23,7 +23,7 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
     return <div className="flex flex-col md:flex-row w-full gap-8 md:gap-16 font-sans-1">
     <div className="flex flex-col flex-1/3 gap-2">
         <div className="relative w-full aspect-square">
-            <Image src={urlFor(images[index]).url()} fill sizes="1" className="object-cover" alt={`${data.title}-${index}`} loading="eager"></Image>
+            <Image src={urlFor(images[index]).width(600).format('webp').quality(80).url()} fill sizes="1" className="object-cover" alt={`${data.title}-${index}`} loading="eager"></Image>
         </div>
         <div className="grid grid-cols-7 gap-2">
             {images.map((e, i) => {

@@ -25,14 +25,16 @@ export function PostCards({ data }: { data: PostItem }) {
 
   return (
     <Link href={`/posts/${data.slug.current}`} className="flex flex-col justify-center bg-white drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1 group hover:bg-red-700 hover:text-white hover:scale-105 duration-500 transition-all">
-      <div className="w-full aspect-6/4 relative rounded-t-md overflow-clip">
+      <div className="w-full aspect-5/2 md:aspect-6/4 relative rounded-t-md overflow-clip">
         <Image
-          src={urlFor(data.cover).url()}
-          alt={data.title}
-          fill
-          sizes="1"
-          loading="eager"
-          className="object-cover"
+          src={urlFor(data.cover).width(600).format('webp').quality(60).url()}
+                    alt={data.title}
+                    fill
+                    // Perbaikan ukuran: Full width di mobile, 50% di tablet, 33% di desktop
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    // Hapus loading="eager" agar default menjadi lazy loading
+                    className="object-cover"
+                    unoptimized // Tambahkan ini agar tidak memakai /_next/image
         />
       </div>
       <div className='flex flex-col p-2 gap-2'>
@@ -40,7 +42,7 @@ export function PostCards({ data }: { data: PostItem }) {
         <FaCalendarAlt className='size-3'/>
         <p className='font-light text-xs'>{formattedDate}</p>
       </div>
-      <h1 className="font-bold text-xs lg:text-lg">{data.title}</h1>
+      <h1 className="font-bold text-sm lg:text-lg">{data.title}</h1>
       <div className='text-xs flex items-end'>
         <PortableText value={data.content[0]}/>
       </div>

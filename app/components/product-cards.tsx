@@ -22,18 +22,25 @@ export function ProductsCards({ data }: { data: ProductItem }) {
   };
 
   return (
-    <Link href={`/products/${data.slug.current}`}
-          onClick={handleClick} className="flex flex-col items-center justify-center bg-white drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1 group hover:scale-105 duration-300 transition-all">
-      <div className="w-full aspect-5/4 relative rounded-t-md overflow-clip">
+    <Link 
+      href={`/products/${data.slug.current}`}
+      onClick={handleClick} 
+      className="flex flex-col items-center justify-center bg-white shadow-md shadow-black/20 rounded-md font-sans-1 group hover:scale-105 duration-300 transition-all"
+    >
+      {/* Perbaikan pada aspect ratio */}
+      <div className="w-full aspect-5/4 relative rounded-t-md overflow-hidden">
         <Image
-          src={urlFor(data.cover).url()}
+          src={urlFor(data.cover).width(600).format('webp').quality(60).url()}
           alt={data.title}
           fill
-          sizes="1"
-          loading="eager"
+          // Perbaikan ukuran: Full width di mobile, 50% di tablet, 33% di desktop
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          // Hapus loading="eager" agar default menjadi lazy loading
           className="object-cover"
+          unoptimized // Tambahkan ini agar tidak memakai /_next/image
         />
       </div>
+      
       <div className="flex flex-col gap-2 px-2 py-4 items-center justify-center">
         <h1 className="font-bold text-sm lg:text-lg text-center">{data.title}</h1>
         <div
