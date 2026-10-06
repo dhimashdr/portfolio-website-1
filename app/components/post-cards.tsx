@@ -24,7 +24,7 @@ export function PostCards({ data }: { data: PostItem }) {
   });
 
   return (
-    <Link href={`/posts/${data.slug.current}`} className="flex flex-col justify-center bg-white drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1 group hover:bg-red-700 hover:text-white hover:scale-105 duration-500 transition-all">
+    <Link href={`/posts/${data.slug.current}`} className="flex flex-col bg-white drop-shadow-black/20 drop-shadow-md rounded-md font-sans-1 group hover:bg-red-700 hover:text-white hover:scale-105 duration-500 transition-all">
       <div className="w-full aspect-5/2 md:aspect-6/4 relative rounded-t-md overflow-clip">
         <Image
           src={urlFor(data.cover).width(600).format('webp').quality(60).url()}

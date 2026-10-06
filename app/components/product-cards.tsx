@@ -25,7 +25,7 @@ export function ProductsCards({ data }: { data: ProductItem }) {
     <Link 
       href={`/products/${data.slug.current}`}
       onClick={handleClick} 
-      className="flex flex-col items-center justify-center bg-white shadow-md shadow-black/20 rounded-md font-sans-1 group hover:scale-105 duration-300 transition-all"
+      className="flex flex-col items-center bg-white shadow-md shadow-black/20 rounded-md font-sans-1 group hover:scale-105 duration-300 transition-all gap-2 lg:gap-4"
     >
       {/* Perbaikan pada aspect ratio */}
       <div className="w-full aspect-5/4 relative rounded-t-md overflow-hidden">
@@ -40,15 +40,15 @@ export function ProductsCards({ data }: { data: ProductItem }) {
           unoptimized // Tambahkan ini agar tidak memakai /_next/image
         />
       </div>
-      
-      <div className="flex flex-col gap-2 px-2 py-4 items-center justify-center">
-        <h1 className="font-bold text-sm lg:text-lg text-center">{data.title}</h1>
+      <h1 className="font-bold text-xs md:text-sm lg:text-lg text-center my-auto px-2">{data.title}</h1>
         <div
-          className="border border-red-700 text-red-700 rounded-full w-fit px-4 py-0.5 lg:px-6 lg:py-1 group-hover:bg-red-700 group-hover:text-white transition-colors font-medium text-[0.5rem] lg:text-sm duration-300"
+          className="border border-red-700 text-red-700 rounded-full w-fit px-4 py-0.5 lg:px-6 lg:py-1 group-hover:bg-red-700 group-hover:text-white transition-colors font-medium text-[0.5rem] lg:text-sm duration-300 mb-4 mt-auto"
         >
           lihat selengkapnya
         </div>
-      </div>
+      {/* <div className="flex flex-col gap-2 px-2 py-4 items-center justify-center">
+        
+      </div> */}
     </Link>
   );
 }
