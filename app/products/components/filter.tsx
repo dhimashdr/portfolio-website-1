@@ -1,4 +1,4 @@
-// import bookData from "../../data/bookData.json";
+//filter.tsx
 'use client'
 
 import { FaFilter, FaArrowRight, FaTrashAlt } from "react-icons/fa";
@@ -14,7 +14,7 @@ const handleFilter = (filter : Array<string>) => {
     const params = new URLSearchParams(filterParams)
     if (filter.length != 0) {
         params.delete('page')
-        params.set('category', filter.map(g => g.toString()).join(' '))
+        params.set('category', filter.join(','))
     } else {
         params.delete('category')
     }
@@ -44,8 +44,10 @@ function showFilter(){
 
 let categoryPlaceholder = 'Kategori'
 if (filterParams.get('category')) {
-    categoryPlaceholder = filterParams.get('category')?.toString().split(' ').map(g => g.charAt(0).toUpperCase() + g.slice(1)).join(', ') || 'category'
+    categoryPlaceholder = filterParams.get('category')?.toString().split(',').map(g => g.charAt(0).toUpperCase() + g.slice(1)).join(', ') || 'category'
 }
+
+const activeCategories = filterParams.get('category')?.split(',') || []
 
 
     return <>
@@ -59,7 +61,8 @@ if (filterParams.get('category')) {
         <m.div id="Categories" className="hidden absolute z-55 w-full" layout>
             <form className="bg-slate-100 border border-black grid-cols-2 p-2 grid gap-1">
         {categoryArray.map((g, i) => {
-            return <label key={i} className="flex items-center gap-1"><input type="checkbox" name="category" id="category" value={g.toLowerCase()}/> {g} </label>
+            const val = g.toLowerCase()
+            return <label key={i} className="flex items-center gap-1"><input type="checkbox" name="category" id="category" value={val} defaultChecked={activeCategories.includes(val)}/> {g} </label>
         })}
         </form>
         <div className="w-full flex font-semibold text-bg-2">

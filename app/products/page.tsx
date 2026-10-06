@@ -22,7 +22,7 @@ async function getTotalProducts(filter:string){
 export default async function ProductsPage({searchParams} : {searchParams : Promise<{ page?: string, category?: string, search?: string }>}){
 
     const { page, category, search } = await searchParams
-    const categories = category ? category?.split(" ") : []
+    const categories = category ? category.split(",") : []
     const searches = search ? search?.toLowerCase() : ''
     const filter = `title match "*${searches}*" && count(tags[lower(@) in [${categories.map((e) => `"${e}"`)}]]) == count(${`[${categories.map((e) => `"${e}"`)}]`})`
     const totalProducts = await getTotalProducts(filter)
