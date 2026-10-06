@@ -19,7 +19,7 @@ async function getPhotos(){
                         lqip // Bonus: untuk efek blur saat loading
                         }
                     }}`
-    const data = await client.fetch(query, {}, {next: {revalidate: 60}})
+    const data = await client.fetch(query, {}, {next: {tags: ['katalog-produk']}})
 
     return data as Array<Photos>
 }
@@ -29,7 +29,7 @@ export default async function GalleryPage(){
     const photos = arrayPhotos.flatMap(item => item.productImages);
 
     return <div className="w-full h-full">
-        <Section title="Galeri Kerajinan" subtitle="lihat berbagai dokumentasi dari kerajinan yang telah dibuat"/>
+        <Section title="Galeri Kerajinan" subtitle="Lihat berbagai dokumentasi dari kerajinan yang telah dibuat"/>
         <div className="p-8 lg:p-16"><Gallery photos={photos}/></div>
     </div>
 }

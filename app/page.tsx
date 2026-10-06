@@ -18,13 +18,14 @@ export default function Home(){
         <br />
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8'>
           <SixProducts/>
-          <div className='bg-fg-1 col-span-2 flex flex-col text-left px-4 py-8 md:px-8 justify-center text-bg-1'>
-            <h1 className='font-bold text-xl lg:text-4xl'>Ingin mencari produk kerajinan lainnya?</h1>
-            <p className='font-light text-xs lg:text-sm text-pretty'>Jelajahi daftar katalog produk kami dan temukan produk kerajinan yang Anda inginkan.</p>
+          <div className='col-span-2 flex flex-col text-left px-4 py-8 md:px-8 justify-center text-bg-1 rounded-md drop-shadow-black/20 drop-shadow-md bg-cover relative overflow-clip' style={{backgroundImage: "url('/images/hero-section/hero-3.jpg')"}}>
+            <div className='w-full h-full bg-black/50 absolute z-1 left-0 top-0 backdrop-blur-xs'></div>
+            <h1 className='font-bold text-xl lg:text-4xl relative z-10'>Ingin mencari produk kerajinan lainnya?</h1>
+            <p className='font-light text-xs lg:text-sm text-pretty relative z-10'>Jelajahi daftar katalog produk kami dan temukan produk kerajinan yang Anda inginkan.</p>
           </div>
         </div>
         <br />
-        <Link className='font-semibold bg-red-700 text-white w-fit mx-auto py-2 px-8 rounded-md drop-shadow-md drop-shadow-black/20 hover:bg-red-800 active:scale-95 transition-all text-xs lg:text-xl' href={'/products'}>Jelajahi produk lainnya</Link>
+        <Link className='font-semibold bg-red-700 text-white w-fit mx-auto py-2 px-8 rounded-md drop-shadow-md drop-shadow-black/20 hover:bg-red-800 active:scale-95 transition-all text-xs lg:text-xl hover:scale-105 duration-300' href={'/products'}>Jelajahi produk lainnya</Link>
         <br />
         <div className='flex flex-col gap-4'>
           <Advantages/>

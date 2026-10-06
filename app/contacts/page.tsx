@@ -1,17 +1,17 @@
 import Link from "next/link"
 import Section from "../components/section"
-import { FaWhatsapp, FaEnvelope } from "react-icons/fa"
+import { FaWhatsapp, FaInstagram } from "react-icons/fa"
 
 const contacts = [
     {
         icon: <FaWhatsapp className="size-6 text-green-500"/>,
-        value: "62 858 1278 0604",
-        href: "https://wa.me/6285812780604"
+        value: "0889-8629-7569",
+        href: "https://wa.me/6288986297569"
     },
     {
-        icon: <FaEnvelope className="size-6 text-purple-500"/>,
-        value: "dhimashdr@gmail.com",
-        href: "mailto:dhimashdr@gmail.com"
+        icon: <FaInstagram className="size-6 text-pink-500"/>,
+        value: "@copper_craftie",
+        href: "https://instagram.com/copper_craftie"
     },
 ]
 

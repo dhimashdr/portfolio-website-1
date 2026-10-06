@@ -2,6 +2,7 @@ import { client } from "@/sanity/lib/client"
 import ProductDetailInfo from "../components/product-detail"
 import { Metadata, ResolvingMetadata } from "next"
 import { urlFor } from "@/sanity/lib/image"
+import { cache } from "react" // 1. Tambahkan cache dari React
 
 interface ProductDetail{
     title: string,
@@ -10,38 +11,64 @@ interface ProductDetail{
     description: any
 }
 
+// 2. Bungkus fungsi fetch dengan cache() agar query Sanity tidak dijalankan 2x
+const getProductDetail = cache(async (slug : string) => {
+    // Menggunakan [0] langsung di GROQ query lebih efisien
+    const query = `*[_type == "products" && slug.current == "${slug}"][0]{title, cover, productImages, description}`
+    const data = await client.fetch(query, {}, {next: {tags: ['katalog-produk']}})
+    
+    return data as ProductDetail
+})
+
+// 3. Helper untuk merubah Sanity Portable Text menjadi Plain Text untuk meta description
+function extractTextFromBlocks(blocks: any): string {
+    if (!blocks) return "Beli produk kerajinan tembaga terbaik dari Copper Craftie.";
+    if (typeof blocks === 'string') return blocks.substring(0, 160);
+    
+    // Jika formatnya blok (Portable Text Sanity)
+    if (Array.isArray(blocks)) {
+        return blocks
+            .map(block => block.children?.map((child: any) => child.text).join(''))
+            .join(' ')
+            .substring(0, 160); // Batasi maksimal 160 karakter sesuai standar SEO
+    }
+    
+    return "Beli produk kerajinan tembaga terbaik dari Copper Craftie.";
+}
+
 export async function generateMetadata(
     { params }: { params: Promise<{ slug: string }> },
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const { slug } = await params
     const product = await getProductDetail(slug)
+    
+    const siteName = 'Copper Craftie';
+    const baseUrl = 'https://domainanda.com'; // Ganti dengan domain asli Anda
+    const url = `${baseUrl}/products/${slug}`;
 
-    // Fallback jika produk tidak ditemukan
     if (!product) {
         return {
-            title: 'Produk Tidak Ditemukan',
-            description: 'Produk yang Anda cari tidak tersedia.'
+            title: `Produk Tidak Ditemukan | ${siteName}`,
+            description: `Produk yang Anda cari tidak tersedia di ${siteName}.`
         }
     }
 
-    // Ekstrak deskripsi (Jika menggunakan Portable Text Sanity, Anda mungkin perlu mengubahnya ke plain text dulu. 
-    // Di sini diasumsikan description adalah string atau kita ambil fallback)
-    const plainDescription = typeof product.description === 'string' 
-        ? product.description.substring(0, 160) 
-        : "Beli produk terbaik kami dengan harga spesial dan kualitas terjamin."; 
+    const plainDescription = extractTextFromBlocks(product.description); 
 
-    // Ekstrak URL gambar cover (Pastikan Anda memiliki fungsi helper urlFor dari Sanity)
-    const coverImageUrl = product.cover ? urlFor(product.cover).url() : '/images/section-background.jpg';
+    // 4. Force dimensi gambar langsung dari CDN Sanity agar hemat bandwidth dan pas di medsos
+    const coverImageUrl = product.cover 
+        ? urlFor(product.cover).width(1200).height(630).fit('crop').url() 
+        : `${baseUrl}/images/section-background.jpg`; // Pastikan URL absolut
 
     return {
-        title: `${product.title} | Wall Covering Art`, // Selalu tambahkan brand name di belakang
+        title: `${product.title} | ${siteName}`,
         description: plainDescription,
         openGraph: {
-            title: `${product.title} | Nama Toko Anda`,
+            title: `${product.title} | ${siteName}`,
             description: plainDescription,
-            url: `https://domainanda.com/products/${slug}`,
-            siteName: 'Nama Toko Anda',
+            url: url,
+            siteName: siteName,
             images: [
                 {
                     url: coverImageUrl,
@@ -51,25 +78,18 @@ export async function generateMetadata(
                 },
             ],
             locale: 'id_ID',
-            type: 'website',
+            type: 'website', // Akan lebih baik jika 'type' diganti 'product' (lihat dokumentasi OG)
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${product.title} | Nama Toko Anda`,
+            title: `${product.title} | ${siteName}`,
             description: plainDescription,
             images: [coverImageUrl],
         },
         alternates: {
-            canonical: `https://domainanda.com/products/${slug}`, // Sangat penting untuk menghindari duplicate content
+            canonical: url,
         },
     }
-}
-
-async function getProductDetail(slug : string){
-    const query = `*[_type == "products" && slug.current == "${slug}"]{title, cover, productImages, description}`
-    const data = await client.fetch(query, {}, {next: {revalidate: 60}})
-
-    return data[0] as ProductDetail
 }
 
 export default async function DetailProduct({ params }: {params : Promise<{ slug: string }>}){
@@ -80,7 +100,38 @@ export default async function DetailProduct({ params }: {params : Promise<{ slug
         return <div className="p-8 lg:p-16 text-center">Produk tidak ditemukan.</div>
     }
     
-    return <div className="p-8 lg:p-16">
-    <ProductDetailInfo data={data}></ProductDetailInfo>
-    </div>
+    // 5. Setup JSON-LD untuk Product Schema (Rich Snippets Google)
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: data.title,
+        image: data.cover ? urlFor(data.cover).url() : '',
+        description: extractTextFromBlocks(data.description),
+        brand: {
+            '@type': 'Brand',
+            name: 'Copper Craftie'
+        },
+        // Jika Anda punya data harga, uncomment bagian ini:
+        /*
+        offers: {
+            '@type': 'Offer',
+            priceCurrency: 'IDR',
+            price: data.price,
+            availability: data.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            url: `https://domainanda.com/products/${slug}`
+        }
+        */
+    };
+
+    return (
+        <div className="p-8 lg:p-16">
+            {/* Inject struktur data ke dalam DOM */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            
+            <ProductDetailInfo data={data} />
+        </div>
+    )
 }

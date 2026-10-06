@@ -3,12 +3,12 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-interface ProductPaginationInfo{
+interface PostPaginationInfo{
   currentPage: number,
   totalPages: number
 }
 
-export default function ProductPagination({currentPage, totalPages} : ProductPaginationInfo){
+export default function PostPagination({currentPage, totalPages} : PostPaginationInfo){
   const pageParams = useSearchParams()
   const pathName = usePathname()
   const router = useRouter()
@@ -24,7 +24,7 @@ export default function ProductPagination({currentPage, totalPages} : ProductPag
   }
 
   return (
-    <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 mx-auto w-fit select-none">
+  <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 mx-auto w-fit select-none">
     {/* Tombol Previous */}
     <button
       className={`group flex items-center justify-center p-2 sm:px-3 sm:py-2 rounded-lg transition-all duration-200 border active:scale-95 ${
@@ -63,5 +63,5 @@ export default function ProductPagination({currentPage, totalPages} : ProductPag
       <FaChevronRight className="size-4 sm:size-5 transition-transform group-hover:translate-x-1" />
     </button>
   </div>
-  );
+);
 }

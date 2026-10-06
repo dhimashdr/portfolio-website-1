@@ -16,6 +16,10 @@ const Links = [
         label: "PRODUK"
     },
     {
+        href: "/posts",
+        label: "ARTIKEL"
+    },
+    {
         href: "/gallery",
         label: "GALERI"
     },
@@ -70,7 +74,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center h-16">
           <div className="shrink-0 flex items-center">
             <Link href="/" className="w-10 aspect-square relative">
-              <Image src={`/images/no-image.png`} alt="logo" fill sizes="100"/>
+              <Image src={`/images/cc-red-black.png`} alt="logo" fill sizes="100"/>
             </Link>
           </div>
 

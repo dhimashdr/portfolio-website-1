@@ -7,14 +7,14 @@ import Search from "./components/search"
 
 async function getCategories(){
     const query = `array::unique(*[_type == "products" && defined(tags)].tags[])`
-    const data = await client.fetch(query, {}, {next: {revalidate: 60}})
+    const data = await client.fetch(query, {}, {next: {tags: ['katalog-produk']}})
 
     return data as Array<string>
 }
 
-async function getTotalProducts(){
-    const query = 'count(*[_type == "products"])'
-    const data = await client.fetch(query, {}, {next: {revalidate: 60}})
+async function getTotalProducts(filter:string){
+    const query = `count(*[_type == "products" && ${filter}])`
+    const data = await client.fetch(query, {}, {next: {tags: ['katalog-produk']}})
 
     return data as number
 }
@@ -24,7 +24,8 @@ export default async function ProductsPage({searchParams} : {searchParams : Prom
     const { page, category, search } = await searchParams
     const categories = category ? category?.split(" ") : []
     const searches = search ? search?.toLowerCase() : ''
-    const totalProducts = await getTotalProducts()
+    const filter = `title match "*${searches}*" && count(tags[lower(@) in [${categories.map((e) => `"${e}"`)}]]) == count(${`[${categories.map((e) => `"${e}"`)}]`})`
+    const totalProducts = await getTotalProducts(filter)
     const currentPage = Number(page) || 1
     const itemsPerPage = 8
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -32,12 +33,10 @@ export default async function ProductsPage({searchParams} : {searchParams : Prom
     const categoriesList = await getCategories()
     const categoriesArray = categoriesList.map((e) => e.toLocaleLowerCase())
 
-    const filter = `title match "*${searches}*" && count(tags[lower(@) in [${categories.map((e) => `"${e}"`)}]]) == count(${`[${categories.map((e) => `"${e}"`)}]`})`
-
     return <div className="">
-        {startIndex == 0 && 
+        
         <Section title="Produk" subtitle="Telusuri berbagai kerajinan yang telah kami kerjakan untuk berbagai client."/>
-        }
+        
         <br />
         {/* <div className="w-full grid grid-cols-2 px-16 gap-4">
             <Search/>

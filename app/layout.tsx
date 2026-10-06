@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import OverlayWhatsapp from "./components/overlay-whatsapp";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,30 +33,26 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dhimashdr.vercel.app"),
+  metadataBase: new URL("https://coppercraftie.com"),
   title: {
-    default: 'Kerajinan Tembaga & Kuningan | Yourweb.com',
-    template: '%s | Yourweb.com'
+    default: 'Kerajinan Tembaga & Kuningan | Copper Craftie',
+    template: '%s | Copper Craftie'
   },
   description: "Jelajahi katalog produk kerajinan tembaga dan kuningan berkualitas tinggi. Temukan dekorasi interior dan eksterior terbaik untuk kebutuhan Anda.",
-  applicationName: 'Yourweb',
-  authors: [{ name: 'Nama Kamu atau Perusahaan' }],
+  applicationName: 'Copper Craftie',
+  authors: [{ name: 'Copper Craftie' }],
   generator: 'Next.js',
   keywords: ['kerajinan tembaga', 'kuningan', 'dekorasi rumah', 'katalog produk', 'kerajinan tangan'],
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: 'Katalog Produk Kerajinan Tembaga & Kuningan',
     description: 'Jelajahi katalog produk kerajinan tembaga dan kuningan berkualitas tinggi.',
-    url: 'https://dhimashdr.vercel.app',
-    siteName: 'Yourweb.com',
+    siteName: 'Copper Craftie',
     images: [
       {
-        url: '/images/section-background.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Preview Katalog Produk Yourweb',
+        alt: 'Preview Katalog Produk Copper Craftie',
       },
     ],
     locale: 'id_ID',
@@ -68,11 +65,11 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -88,16 +85,37 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${dmSans.variable} ${dmMono.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="">
+        <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Copper Craftie",
+          "image": "https://coppercraftie.com/og-image.jpg", // Sesuaikan jika perlu
+          "description": "Pusat pembuatan dan katalog produk kerajinan tembaga dan kuningan berkualitas tinggi.",
+          "url": "https://coppercraftie.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Boyolali",
+            "addressCountry": "ID"
+          },
+          "priceRange": "$$"
+        })
+      }}
+    />
         <div className="min-h-full flex flex-col relative bg-bg-1">
             <NavBar/>
+            
             {children}
             <OverlayWhatsapp/>
             <Footer/>
         </div>
+        <GoogleTagManager gtmId="GTM-57MV5MHG" />
       </body>
     </html>
   );

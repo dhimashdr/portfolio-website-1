@@ -5,35 +5,27 @@ import { FaInstagram, FaWhatsapp, FaFacebook, FaTiktok, FaPhone, FaEnvelope } fr
 const socials = [
     {
         icon: <FaInstagram className="w-full h-full"/>,
-        url: "https://instagram.com"
+        url: "https://instagram.com/copper_craftie"
     },
     {
         icon: <FaWhatsapp className="w-full h-full"/>,
-        url: "https://wa.me/6285812780604"
+        url: "https://wa.me/6288986297569"
     },
     {
         icon: <FaFacebook className="w-full h-full"/>,
-        url: "https://facebook.com"
-    },
-    {
-        icon: <FaTiktok className="w-full h-full"/>,
-        url: "https://tiktok.com"
-    },
+        url: "https://facebook.com/ilham.ramadhan.588798"
+    }
 ]
 
 const contacts = [
     {
         icon: <FaPhone className="w-full h-full"/>,
-        value: "0858-1278-0604"
+        value: "0889-8629-7569"
     },
     {
         icon: <FaWhatsapp className="w-full h-full"/>,
-        value: "0858-1278-0604"
-    },
-    {
-        icon: <FaEnvelope className="w-full h-full"/>,
-        value: "dhimashdr@gmail.com"
-    },
+        value: "0889-8629-7569"
+    }
 ]
 
 export default function Footer(){
@@ -43,9 +35,9 @@ export default function Footer(){
             <h1 className="text-md lg:text-2xl font-bold">Tentang Kami</h1>
             <div className="flex items-center gap-2">
                 <div className="h-12 w-12 relative">
-                    <Image src={'/images/no-image.png'} alt="logo" fill sizes="1"></Image>
+                    <Image src={'/images/cc-red-white.png'} alt="logo" fill sizes="1"></Image>
                 </div>
-                <h1 className="font-light text-xs lg:text-sm">nama brand</h1>
+                <h1 className="text-xs lg:text-sm font-bold">Copper Craftie</h1>
             </div>
             <p className="text-[0.625rem] lg:text-sm text-balance">Menerima pemesanan kerajinan tembaga dan kuningan dengan kualitas dan presisi yang tinggi. Bebas melakukan custom design sesuai kebutuhan Anda. Bebas konsultasi untuk mengetahui harga dan detail kerajinan yang Anda inginkan!</p>
             <div className="flex gap-4">
@@ -81,7 +73,7 @@ export default function Footer(){
     <br />
     <div className="flex px-16 items-center justify-center text-xs md:text-sm text-gray-500 ">
         <h1></h1>
-        <h1 className="mx-auto">© 2026, diverse.id</h1>
+        <h1 className="mx-auto">© 2026 <Link href="https://diverse.web.id">diverse.web.id</Link></h1>
     </div>
     <br />
     </div>

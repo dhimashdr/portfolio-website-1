@@ -19,7 +19,7 @@ const faq = [
     },
     {
         question: "Bagaimana sistem pembayarannya?",
-        answer: "Sistem pembayaran dilakukan dengan DP 50% ke nomor rekening ..., kemudian melakukan pelunasan ketika barang sudah jadi (akan dihubungi lagi setelah barang sudah jadi)."
+        answer: "Sistem pembayaran dilakukan dengan uang muka terlebih dahulu. Pelunasan dilakukan ketika barang sudah jadi dan siap dikirimkan."
     },
 ]
 

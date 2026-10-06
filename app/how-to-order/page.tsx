@@ -9,17 +9,17 @@ const steps = [
     {
         step: 2,
         title: "Anda memperoleh informasi produk",
-        description: "Kami akan memberi tahu informasi mengenai detail, harga, dan kesediaan barang kepada Anda."
+        description: "Kami akan memberi tahu informasi mengenai detail, harga, kesediaan barang, dan estimasi waktu pengerjaan kepada Anda."
     },
     {
         step: 3,
-        title: "Sistem pembayaran DP 50%",
-        description: "Pembayaran dilakukan dua tahap, pertama DP 50% di awal. Setelah barang sudah jadi dan siap dikirimkan, pembeli melakukan pelunasan. Semua transaksi hanya melalui rekening a.n. Dimas Hendrico"
+        title: "Pembayaran uang muka",
+        description: "Pembayaran dilakukan dengan uang muka terlebih dahulu, pelunasan dilakukan ketika barang sudah jadi dan siap untuk dikirimkan."
     },
     {
         step: 4,
         title: "Produk sampai ke tangan penerima",
-        description: "Pastikan barang yang diterima sesuai dengan pesanan."
+        description: "Setelah pelunasan, barang akan kami packing dengan aman serta dengan ekspedisi yang aman. Pastikan barang yang diterima sesuai dengan pesanan."
     }
 ]
 

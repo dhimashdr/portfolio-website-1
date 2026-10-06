@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://coppercraftie.com"),
-  title: 'Katalog Produk',
-  description: "Jelajahi katalog produk kerajinan tembaga dan kuningan",
+  title: 'Artikel',
+  description: "Artikel yang relevan dengan kerajinan tembaga dan kuningan",
   openGraph: {
     images: ['/og-image.jpg'],
   },

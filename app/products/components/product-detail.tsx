@@ -25,9 +25,9 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
         <div className="relative w-full aspect-square">
             <Image src={urlFor(images[index]).url()} fill sizes="1" className="object-cover" alt={`${data.title}-${index}`} loading="eager"></Image>
         </div>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-7 gap-2">
             {images.map((e, i) => {
-                return <div onClick={() => setIndex(i)} className="relative w-12 lg:w-16 aspect-square cursor-pointer p-2" key={i}>
+                return <div onClick={() => setIndex(i)} className="relative w-full aspect-square cursor-pointer p-2" key={i}>
                     {index == i && <div className="w-full h-full absolute bg-white/50 z-10 left-0 top-0  border-4 border-red-400"></div>}
                     <Image src={urlFor(e).url()} alt={`${data.title}-${i}`} fill sizes="1" className="object-cover" loading="eager"></Image>
                 </div>
@@ -36,7 +36,7 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
     </div>
     <div className="flex-2/3 flex flex-col gap-8">
         <h1 className="font-bold text-4xl">{data.title}</h1>
-        <div className="font-sans text-balance">
+        <div className="font-sans text-balance text-sm">
             <p className="font-light text-gray-500 text-sm">Deskripsi</p>
             <hr className="md:w-1/2 text-gray-300"/>
             <PortableText value={data.description} components={myPortableTextComponents}/>

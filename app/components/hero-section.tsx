@@ -31,7 +31,7 @@ export default function AutoSlideshow() {
       </AnimatePresence>
       <div className='relative w-full h-full bg-black/64 flex flex-col justify-center-safe p-8 lg:p-16 gap-2 lg:gap-4 text-center lg:text-left'>
         <h1 className='font-bold text-xl lg:text-4xl text-shadow-md text-shadow-black/50'>Kerajinan Tembaga Kuningan</h1>
-        <p className='font-light text-[0.5rem] lg:text-sm text-shadow-xs text-shadow-black/50 text-balance lg:w-1/2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias nobis atque quisquam dolore sequi inventore velit perspiciatis corrupti quo explicabo!</p>
+        <p className='font-light text-[0.5rem] lg:text-sm text-shadow-xs text-shadow-black/50 text-balance lg:w-1/2'>Jelajahi produk kerajinan tembaga dan kuningan pilihan kami. <span className='font-bold'>Bebas kustom dan gratis konsultasi!</span></p>
       </div>
     </div>
   );
