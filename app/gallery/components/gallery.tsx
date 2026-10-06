@@ -53,7 +53,7 @@ export default function Gallery({photos} : {photos : Array<Photos>}){
             
             {index != null && (
                 // Perbaikan z-index ke standar tailwind (z-50)
-                <div className="w-full h-full fixed z-50 bg-black/80 left-0 top-0 flex items-center justify-center" onClick={removeImage}>
+                <div className="w-full h-full fixed z-60 bg-black/80 left-0 top-0 flex items-center justify-center" onClick={removeImage}>
                     <div className="w-[90%] md:w-2/3 lg:w-1/3 overflow-hidden cursor-zoom-out">
                         {/* OPTIMASI 6: Render resolusi tinggi (1200px) hanya saat modal galeri dibuka */}
                         <Image 
