@@ -25,7 +25,7 @@ export default function Home(){
           </div>
         </div>
         <br />
-        <Link className='font-semibold bg-red-700 text-white w-fit mx-auto py-2 px-8 rounded-md drop-shadow-md drop-shadow-black/20 hover:bg-red-800 active:scale-95 transition-all text-xs lg:text-xl hover:scale-105 duration-300' href={'/products'}>Jelajahi produk lainnya</Link>
+        <Link className='font-semibold bg-red-700 text-white w-fit mx-auto py-2 px-8 rounded-md drop-shadow-md drop-shadow-black/20 hover:bg-red-800 active:scale-95 transition-all text-xs lg:text-xl hover:scale-105 duration-300' href={'/produk'}>Jelajahi produk lainnya</Link>
         <br />
         <div className='flex flex-col gap-4'>
           <Advantages/>

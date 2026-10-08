@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 2. Mapping Rute Dinamis: Produk
   const productRoutes: MetadataRoute.Sitemap = products.map((product: any) => ({
-    url: `${baseUrl}/products/${product.slug}`,
+    url: `${baseUrl}/produk/${product.slug}`,
     lastModified: product._updatedAt, // Gunakan tanggal update terakhir dari Sanity
     changeFrequency: 'weekly',
     priority: 0.9, // Prioritas tinggi karena ini jualan utamamu
@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 3. Mapping Rute Dinamis: Artikel
   const postRoutes: MetadataRoute.Sitemap = posts.map((post: any) => ({
-    url: `${baseUrl}/posts/${post.slug}`,
+    url: `${baseUrl}/artikel/${post.slug}`,
     lastModified: post._updatedAt,
     changeFrequency: 'weekly',
     priority: 0.7, // Artikel blog cukup 0.7
@@ -40,25 +40,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0, // Homepage selalu 1.0
     },
     {
-      url: `${baseUrl}/products`,
+      url: `${baseUrl}/produk`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/posts`,
+      url: `${baseUrl}/artikel`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/how-to-order`,
+      url: `${baseUrl}/cara-pesan`,
       lastModified: new Date(),
       changeFrequency: 'yearly', // Jarang berubah
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contacts`,
+      url: `${baseUrl}/kontak`,
       lastModified: new Date(),
       changeFrequency: 'yearly', // Jarang berubah
       priority: 0.8,

@@ -23,7 +23,7 @@ export function ProductsCards({ data }: { data: ProductItem }) {
 
   return (
     <Link 
-      href={`/products/${data.slug.current}`}
+      href={`/produk/${data.slug.current}`}
       onClick={handleClick} 
       className="flex flex-col items-center bg-white shadow-md shadow-black/20 rounded-md font-sans-1 group hover:scale-105 duration-300 transition-all gap-2 lg:gap-4"
     >

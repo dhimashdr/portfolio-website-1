@@ -12,23 +12,23 @@ const Links = [
         label: "HOME"
     },
     {
-        href: "/products",
+        href: "/produk",
         label: "PRODUK"
     },
     {
-        href: "/posts",
+        href: "/artikel",
         label: "ARTIKEL"
     },
     {
-        href: "/gallery",
+        href: "/galeri",
         label: "GALERI"
     },
     {
-        href: "/how-to-order",
+        href: "/cara-pesan",
         label: "CARA PESAN"
     },
     {
-        href: "/contacts",
+        href: "/kontak",
         label: "KONTAK"
     },
 ]
