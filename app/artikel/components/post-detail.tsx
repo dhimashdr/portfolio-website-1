@@ -25,7 +25,7 @@ export function PostDetailInfo({data} : {data : PostDetail}){
     });
 
     return <div className="flex flex-col gap-2">
-        <div className="w-full aspect-4/1 relative bg-cover bg-center" style={{backgroundImage: `url("${urlFor(data.cover).width(600).format('webp').quality(80).url()}")`}}>
+        <div className="w-full aspect-4/1 relative bg-cover bg-center" style={{backgroundImage: `url("${data.cover ?urlFor(data.cover).width(600).format('webp').quality(80).url() : '/images/no-image.png'}")`}}>
             <div className="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
         </div>
         <div className="p-8 lg:p-16">

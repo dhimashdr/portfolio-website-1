@@ -63,7 +63,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     image: ({ value }) => (
       <div className="my-6">
         <img 
-          src={urlFor(value).width(600).format('webp').quality(80).url()} 
+          src={value.asset ? urlFor(value).width(600).format('webp').quality(80).url() : '/images/no-image.png'} 
           alt={value?.alt || 'Image'} 
           className="w-full md:w-1/2 lg:w-1/3 rounded-lg shadow-sm"
         />
