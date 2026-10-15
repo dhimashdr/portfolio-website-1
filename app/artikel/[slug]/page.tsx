@@ -3,9 +3,7 @@ import { PostDetailInfo, PostDetail } from "../components/post-detail"
 import { Metadata, ResolvingMetadata } from "next"
 import { urlFor } from "@/sanity/lib/image"
 import { cache } from "react"
-// Hapus import { div } from "framer-motion/client" jika tidak dipakai, bisa bikin error SSR
 
-// 1. Bungkus fungsi fetch dengan cache() agar query Sanity tidak dijalankan 2x
 const getPostDetail = cache(async (slug : string) => {
     const query = `*[_type == "posts" && slug.current == "${slug}"][0]{title, cover, content, _updatedAt}`
     const data = await client.fetch(query, {}, {next: {tags: ['artikel']}})
@@ -13,9 +11,8 @@ const getPostDetail = cache(async (slug : string) => {
     return data as PostDetail
 })
 
-// 2. Helper untuk merubah Sanity Portable Text menjadi Plain Text
 function extractTextFromBlocks(blocks: any): string {
-    if (!blocks) return "Beli produk kerajinan tembaga terbaik dari Copper Craftie.";
+    if (!blocks) return "Baca artikel terbaru dari Copper Craftie seputar kerajinan tembaga dan kuningan.";
     if (typeof blocks === 'string') return blocks.substring(0, 160);
     
     if (Array.isArray(blocks)) {
@@ -23,45 +20,42 @@ function extractTextFromBlocks(blocks: any): string {
             .map(block => block.children?.map((child: any) => child.text).join(''))
             .join(' ')
             .trim()
-            .substring(0, 157) + "..."; // Tambah elipsis (...) di ujung agar rapi
+            .substring(0, 157) + "..."; 
     }
     
-    return "Beli produk kerajinan tembaga terbaik dari Copper Craftie.";
+    return "Baca artikel terbaru dari Copper Craftie seputar kerajinan tembaga dan kuningan.";
 }
 
-// 3. Tipe data untuk props
 type Props = {
     params: Promise<{ slug: string }>
 }
 
-// 4. Implementasi generateMetadata untuk SEO Halaman Detail
 export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const { slug } = await params
     const data = await getPostDetail(slug)
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://coppercraftie.com'
 
-    // Fallback jika artikel tidak ditemukan
     if (!data) {
         return {
-            title: 'Artikel Tidak Ditemukan',
+            title: 'Artikel Tidak Ditemukan | Copper Craftie',
             description: 'Artikel yang Anda cari tidak tersedia.'
         }
     }
 
     const description = extractTextFromBlocks(data.content)
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://coppercraftie.com'
     
-    // Generate URL gambar untuk preview sosial media (Open Graph / Twitter)
-    // Asumsi urlFor mendukung metode .width() dan .height() dari Sanity Image Builder
-    const ogImage = data.cover ? urlFor(data.cover).width(1200).height(630).url() : ''
+    // PERBAIKAN 1: Tambahkan Fallback Image dan gunakan fit('crop')
+    const ogImage = data.cover 
+        ? urlFor(data.cover).width(1200).height(630).fit('crop').url() 
+        : `${baseUrl}/images/section-background.jpg`
 
     return {
         title: `${data.title} | Copper Craftie`,
         description: description,
         alternates: {
-            // Pastikan format slug routing-mu benar, misal "/artikel/[slug]"
             canonical: `${baseUrl}/artikel/${slug}` 
         },
         openGraph: {
@@ -69,23 +63,23 @@ export async function generateMetadata(
             description: description,
             url: `${baseUrl}/artikel/${slug}`,
             siteName: "Copper Craftie",
-            images: ogImage ? [
+            images: [
                 {
                     url: ogImage,
                     width: 1200,
                     height: 630,
                     alt: data.title,
                 }
-            ] : [],
-            type: 'article', // PENTING: Memberitahu Google bahwa ini adalah artikel blog
-            publishedTime: data._updatedAt, // Tanggal artikel membantu SEO berita/blog
+            ],
+            type: 'article', 
+            publishedTime: data._updatedAt, 
             authors: ['Copper Craftie'],
         },
         twitter: {
             card: 'summary_large_image',
             title: data.title,
             description: description,
-            images: ogImage ? [ogImage] : [],
+            images: [ogImage],
         }
     }
 }
@@ -94,13 +88,36 @@ export default async function DetailPost({ params }: Props){
     const { slug } = await params
     const data = await getPostDetail(slug)
 
-    // Handle proteksi jika user memasukkan URL slug yang salah
     if (!data) {
         return <div className="py-20 text-center">Artikel tidak ditemukan.</div>
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://coppercraftie.com';
+
+    // PERBAIKAN 2: Setup JSON-LD untuk Skema Artikel (BlogPosting)
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: data.title,
+        image: data.cover ? urlFor(data.cover).url() : `${baseUrl}/images/section-background.jpg`,
+        datePublished: data._updatedAt, // Memberitahu Google kapan ini dirilis
+        dateModified: data._updatedAt,
+        author: [{
+            '@type': 'Organization',
+            name: 'Copper Craftie',
+            url: baseUrl
+        }],
+        description: extractTextFromBlocks(data.content)
+    };
+
     return (
         <div className="">
+            {/* Inject struktur data artikel ke dalam DOM */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            
             <PostDetailInfo data={data} />
         </div>
     )

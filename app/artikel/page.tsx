@@ -2,6 +2,43 @@ import { client } from "@/sanity/lib/client"
 import { FilteredPosts } from "../components/posts"
 import PostPagination from "./components/pagination"
 import Section from "../components/section"
+import type { Metadata } from "next";
+
+export async function generateMetadata({ searchParams }: PageProps<'/artikel/[slug]'>): Promise<Metadata> {
+    const { page } = await searchParams
+    const currentPage = Number(page) || 1
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://coppercraftie.com'
+
+    let title = "Artikel Kerajinan Tembaga & Kuningan"
+    if (currentPage > 1) {
+        title = `${title} - Halaman ${currentPage}`
+    }
+
+    const description = "Baca artikel dan wawasan seputar perawatan, pembuatan, dan inspirasi kerajinan tembaga dan kuningan dari Copper Craftie."
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: `${baseUrl}/artikel${currentPage > 1 ? `?page=${currentPage}` : ''}`
+        },
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/artikel`,
+            siteName: "Copper Craftie",
+            images: ['/og-image.jpg'],
+            locale: 'id_ID',
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: ['/og-image.jpg'],
+        },
+    }
+}
 
 async function getTotalPosts(){
     const query = 'count(*[_type == "posts"])'

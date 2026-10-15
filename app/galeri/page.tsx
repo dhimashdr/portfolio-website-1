@@ -1,9 +1,18 @@
 import { client } from "@/sanity/lib/client"
 import Gallery from "./components/gallery"
 import Section from "../components/section"
+import { Metadata } from "next"
 
-// OPTIMASI 1: Jadikan halaman ini cache-statis dengan revalidasi periodik.
-// Ini mencegah Cloudflare Worker melakukan fetch dan render ulang setiap ada pengunjung.
+// 1. Pindahkan metadata ke sini. 
+// Tidak perlu tulis metadataBase lagi karena sudah diwariskan otomatis dari root layout.tsx
+export const metadata: Metadata = {
+  title: 'Galeri Karya', // Nanti otomatis jadi "Galeri Karya | Copper Craftie" berkat template di root
+  description: "Lihat berbagai dokumentasi dan portofolio produk kerajinan tembaga dan kuningan yang telah kami buat.",
+  alternates: {
+    canonical: '/galeri',
+  }
+};
+
 export const revalidate = 3600; 
 
 interface Photos {
@@ -11,8 +20,6 @@ interface Photos {
 }
 
 async function getPhotos() {
-    // OPTIMASI 2: Tambahkan [0...30] untuk mencegah RAM Worker kehabisan memori (Error 1102)
-    // akibat memuat JSON katalog yang terlalu raksasa.
     const query = `*[_type == "products"]{
         "productImages": productImages[isInGallery].asset->{
             url,
@@ -32,8 +39,6 @@ async function getPhotos() {
 
 export default async function GalleryPage() {
     const arrayPhotos = await getPhotos()
-    
-    // OPTIMASI 3: Tambahkan filter(Boolean) untuk mencegah error jika ada data null
     const photos = arrayPhotos.flatMap(item => item.productImages).filter(Boolean);
 
     return (

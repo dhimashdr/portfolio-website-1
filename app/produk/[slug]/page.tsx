@@ -44,8 +44,8 @@ export async function generateMetadata(
     const product = await getProductDetail(slug)
     
     const siteName = 'Copper Craftie';
-    const baseUrl = 'https://domainanda.com'; // Ganti dengan domain asli Anda
-    const url = `${baseUrl}/products/${slug}`;
+    const baseUrl = 'https://coppercraftie.com'; // Ganti dengan domain asli Anda
+    const url = `${baseUrl}/produk/${slug}`;
 
     if (!product) {
         return {
@@ -59,7 +59,7 @@ export async function generateMetadata(
     // 4. Force dimensi gambar langsung dari CDN Sanity agar hemat bandwidth dan pas di medsos
     const coverImageUrl = product.cover 
         ? urlFor(product.cover).width(1200).height(630).fit('crop').url() 
-        : `${baseUrl}/images/section-background.jpg`; // Pastikan URL absolut
+        : `${baseUrl}/og-image.jpg`; // Pastikan URL absolut
 
     return {
         title: `${product.title} | ${siteName}`,

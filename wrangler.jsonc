@@ -41,6 +41,7 @@
     }
   },
 	"vars": {
-    "SANITY_WEBHOOK_SECRET": "katalog_produk_cc"
+    "SANITY_WEBHOOK_SECRET": "katalog_produk_cc",
+	"NEXT_PUBLIC_BASE_URL": "https://coppercraftie.com",
   },
 }

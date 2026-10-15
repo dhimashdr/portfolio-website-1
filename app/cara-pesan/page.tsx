@@ -1,4 +1,13 @@
 import Section from "../components/section"
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Cara Pesan',
+  description: "Jelajahi katalog produk kerajinan tembaga dan kuningan",
+  alternates: {
+    canonical: '/cara-pesan',
+  }
+};
 
 const steps = [
     {

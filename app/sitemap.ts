@@ -52,6 +52,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/galeri`, // JANGAN LUPA TAMBAHKAN INI
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/cara-pesan`,
       lastModified: new Date(),
       changeFrequency: 'yearly', // Jarang berubah

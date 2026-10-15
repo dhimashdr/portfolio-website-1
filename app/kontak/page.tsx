@@ -1,6 +1,15 @@
 import Link from "next/link"
 import Section from "../components/section"
 import { FaWhatsapp, FaInstagram } from "react-icons/fa"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Kontak',
+  description: "Jelajahi katalog produk kerajinan tembaga dan kuningan",
+  alternates: {
+    canonical: '/kontak',
+  }
+};
 
 const contacts = [
     {

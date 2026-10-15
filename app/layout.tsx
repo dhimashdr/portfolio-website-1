@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   keywords: ['kerajinan tembaga', 'kuningan', 'dekorasi rumah', 'katalog produk', 'kerajinan tangan'],
   openGraph: {
-    title: 'Katalog Produk Kerajinan Tembaga & Kuningan',
-    description: 'Jelajahi katalog produk kerajinan tembaga dan kuningan berkualitas tinggi.',
+    title: 'Copper Craftie | Kerajinan Tembaga & Kuningan',
+    description: 'Jelajahi kerajinan tembaga dan kuningan berkualitas tinggi. Temukan dekorasi interior dan eksterior terbaik untuk kebutuhan Anda.',
     siteName: 'Copper Craftie',
     images: [
       {
@@ -65,11 +65,11 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -108,13 +108,13 @@ export default async function RootLayout({
         })
       }}
     />
-        <div className="min-h-full flex flex-col relative bg-bg-1">
+        <main className="min-h-full flex flex-col relative bg-bg-1">
             <NavBar/>
             
             {children}
             <OverlayWhatsapp/>
             <Footer/>
-        </div>
+        </main>
         <GoogleTagManager gtmId="GTM-57MV5MHG" />
       </body>
     </html>
