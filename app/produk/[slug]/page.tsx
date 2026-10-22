@@ -103,7 +103,8 @@ export default async function DetailProduct({ params }: {params : Promise<{ slug
     // 5. Setup JSON-LD untuk Product Schema (Rich Snippets Google)
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'Product',
+        '@type': 'VisualArtwork',
+        // '@type': 'Product',
         name: data.title,
         image: data.cover ? urlFor(data.cover).url() : '',
         description: extractTextFromBlocks(data.description),
@@ -118,7 +119,7 @@ export default async function DetailProduct({ params }: {params : Promise<{ slug
             priceCurrency: 'IDR',
             price: data.price,
             availability: data.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-            url: `https://domainanda.com/products/${slug}`
+            url: `https://coppercraftie.com/produk/${slug}`
         }
         */
     };
