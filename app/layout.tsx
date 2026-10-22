@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://coppercraftie.com"),
   title: {
     default: 'Kerajinan Tembaga & Kuningan | Copper Craftie',
-    template: '%s | Copper Craftie'
+    template: '%s | Kerajinan Tembaga & Kuningan'
   },
   description: "Jelajahi katalog produk kerajinan tembaga dan kuningan berkualitas tinggi. Temukan dekorasi interior dan eksterior terbaik untuk kebutuhan Anda.",
   applicationName: 'Copper Craftie',

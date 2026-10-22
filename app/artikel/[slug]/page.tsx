@@ -49,7 +49,7 @@ export async function generateMetadata(
     
     // PERBAIKAN 1: Tambahkan Fallback Image dan gunakan fit('crop')
     const ogImage = data.cover 
-        ? urlFor(data.cover).width(1200).height(630).fit('crop').url() 
+        ? urlFor(data.cover).width(1200).height(630).fit('crop').format('jpg').quality(80).url() 
         : `${baseUrl}/images/section-background.jpg`
 
     return {

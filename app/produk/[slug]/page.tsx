@@ -58,7 +58,7 @@ export async function generateMetadata(
 
     // 4. Force dimensi gambar langsung dari CDN Sanity agar hemat bandwidth dan pas di medsos
     const coverImageUrl = product.cover 
-        ? urlFor(product.cover).width(1200).height(630).fit('crop').url() 
+        ? urlFor(product.cover).width(1200).height(630).fit('crop').format('jpg').quality(80).url() 
         : `${baseUrl}/og-image.jpg`; // Pastikan URL absolut
 
     return {
