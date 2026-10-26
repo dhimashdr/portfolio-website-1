@@ -42,7 +42,7 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
             <PortableText value={data.description} components={myPortableTextComponents}/>
         </div>
         <div className="mt-auto mx-auto">
-            <Link href={`https://wa.me/6285812780604?text=${textMessage}`} className="flex items-center p-2 bg-green-500 text-white w-fit gap-2 rounded-md hover:bg-green-600 active:scale-95 transition-all">
+            <Link href={`https://wa.me/6288986297569?text=${textMessage}`} className="flex items-center p-2 bg-green-500 text-white w-fit gap-2 rounded-md hover:bg-green-600 active:scale-95 transition-all">
             <FaWhatsapp className="size-6"/>
             <p className="text-sm font-semibold">pesan sekarang</p>
             </Link>
