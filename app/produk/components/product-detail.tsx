@@ -12,13 +12,14 @@ interface ProductDetail{
     title: string,
     cover: any,
     productImages: Array<any>,
-    description: any
+    description: any,
+    slug: any
 }
 
 export default function ProductDetailInfo({data} : {data : ProductDetail}){
     const images = [data.cover, ...data.productImages]
     const [index, setIndex] = useState(0)
-    const textMessage = encodeURIComponent(`Halo, saya ingin mengetahui detail produk ${data.title}.`);
+    const textMessage = encodeURIComponent(`Halo, saya ingin mengetahui detail produk ini, https://coppercraftie.com/produk/${data.slug.current}`);
 
     return <div className="flex flex-col md:flex-row w-full gap-8 md:gap-16 font-sans-1">
     <div className="flex flex-col flex-1/3 gap-2">
@@ -44,7 +45,7 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
         <div className="mt-auto mx-auto">
             <Link href={`https://wa.me/6288986297569?text=${textMessage}`} className="flex items-center p-2 bg-green-500 text-white w-fit gap-2 rounded-md hover:bg-green-600 active:scale-95 transition-all">
             <FaWhatsapp className="size-6"/>
-            <p className="text-sm font-semibold">pesan sekarang</p>
+            <p className="text-sm font-semibold">tanya produk ini</p>
             </Link>
         </div>
     </div>

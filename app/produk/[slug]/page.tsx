@@ -8,13 +8,14 @@ interface ProductDetail{
     title: string,
     cover: any,
     productImages: Array<any>,
-    description: any
+    description: any,
+    slug: any
 }
 
 // 2. Bungkus fungsi fetch dengan cache() agar query Sanity tidak dijalankan 2x
 const getProductDetail = cache(async (slug : string) => {
     // Menggunakan [0] langsung di GROQ query lebih efisien
-    const query = `*[_type == "products" && slug.current == "${slug}"][0]{title, cover, productImages, description}`
+    const query = `*[_type == "products" && slug.current == "${slug}"][0]{title, cover, productImages, description, slug}`
     const data = await client.fetch(query, {}, {next: {tags: ['katalog-produk']}})
     
     return data as ProductDetail
