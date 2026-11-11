@@ -24,13 +24,26 @@ export default function ProductDetailInfo({data} : {data : ProductDetail}){
     return <div className="flex flex-col md:flex-row w-full gap-8 md:gap-16 font-sans-1">
     <div className="flex flex-col flex-1/3 gap-2">
         <div className="relative w-full aspect-square">
-            <Image src={urlFor(images[index]).width(600).format('webp').quality(80).url()} fill sizes="1" className="object-cover" alt={`${data.title}-${index}`} loading="eager"></Image>
+            <Image 
+            src={urlFor(images[index])
+                .width(600)
+                .height(600)
+                .fit('crop') 
+                .format('webp')
+                .quality(80)
+                .url()} 
+            fill 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+            className="object-cover" 
+            alt={`${data.title}-${index + 1}`} 
+            priority={index === 0} 
+            />
         </div>
         <div className="grid grid-cols-7 gap-2">
             {images.map((e, i) => {
                 return <div onClick={() => setIndex(i)} className="relative w-full aspect-square cursor-pointer p-2" key={i}>
                     {index == i && <div className="w-full h-full absolute bg-white/50 z-10 left-0 top-0  border-4 border-red-400"></div>}
-                    <Image src={urlFor(e).url()} alt={`${data.title}-${i}`} fill sizes="1" className="object-cover" loading="eager"></Image>
+                    <Image src={urlFor(e).width(100).height(100).fit('crop').format('webp').quality(60).url()} alt={`${data.title}-${i}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover"></Image>
                 </div>
             })}
         </div>

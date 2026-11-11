@@ -54,16 +54,17 @@ export default async function ProductsPage({searchParams} : {searchParams : Prom
     const searches = search ? search?.toLowerCase() : ''
     const totalPosts = await getTotalPosts()
     const currentPage = Number(page) || 1
-    const itemsPerPage = 8
+    const itemsPerPage = 9
     const startIndex = (currentPage - 1) * itemsPerPage;
     const totalPages = Math.ceil(totalPosts/itemsPerPage)
 
     const filter = `title match "*${searches}*" && count(tags[lower(@) in [${categories.map((e) => `"${e}"`)}]]) == count(${`[${categories.map((e) => `"${e}"`)}]`})`
 
     return <div className="">
-        {startIndex == 0 && 
+        {/* {startIndex == 0 && 
         <Section title="Artikel" subtitle="Baca artikel kami untuk mengetahui lebih baik tentang kerajinan tembaga dan kuningan."/>
-        }
+        } */}
+        <Section title="Artikel" subtitle="Baca artikel kami untuk mengetahui lebih baik tentang kerajinan tembaga dan kuningan."/>
         <br />
         
         <div className="px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">

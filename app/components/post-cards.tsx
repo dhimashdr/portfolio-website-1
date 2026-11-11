@@ -10,12 +10,12 @@ export interface PostItem {
   cover: any,
   title: string,
   slug: { current: string },
-  _updatedAt: string,
+  _createdAt: string,
   content: any
 }
 
 export function PostCards({ data }: { data: PostItem }) {
-  const date = new Date(data._updatedAt);
+  const date = new Date(data._createdAt);
   const formattedDate = date.toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'long',
@@ -37,13 +37,13 @@ export function PostCards({ data }: { data: PostItem }) {
                     unoptimized // Tambahkan ini agar tidak memakai /_next/image
         />
       </div>
-      <div className='flex flex-col p-2 gap-2'>
+      <div className='flex flex-col p-4 md:px-6 gap-2'>
         <div className='flex items-center gap-2 text-neutral-600 group-hover:text-white duration-500 transition-all'>
         <FaCalendarAlt className='size-3'/>
         <p className='font-light text-xs'>{formattedDate}</p>
       </div>
       <h1 className="font-bold text-sm lg:text-lg">{data.title}</h1>
-      <div className='text-xs flex items-end'>
+      <div className='text-xs flex text-clip h-4 md:h-8 overflow-clip'>
         <PortableText value={data.content[0]}/>
       </div>
       <div className='flex gap-2 items-center ml-auto text-red-600 group-hover:text-white duration-500 transition-all'>
